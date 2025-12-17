@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #f0f2f5; padding: 40px 0; margin: 0; }
+        .container { max-width: 500px; margin: 0 auto; background: #ffffff; padding: 40px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; }
+        .emoji { font-size: 48px; margin-bottom: 20px; display: block; }
+        .logo { font-size: 24px; font-weight: 800; color: #111; margin-bottom: 30px; letter-spacing: -1px; }
+        .logo span { color: #6366f1; }
+        .heading { font-size: 24px; color: #111; font-weight: 700; margin-bottom: 15px; }
+        .body-text { color: #555; line-height: 1.6; margin-bottom: 30px; font-size: 16px; }
+        .btn {
+            background-color: #111;
+            color: #ffffff;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        .footer { font-size: 12px; color: #999; margin-top: 40px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">badger<span>.ai</span> </div>
+        <span class="emoji">🎉</span>
+
+        <h1 class="heading">You're officially in, {{ username }}!</h1>
+
+        <p class="body-text">
+            Welcome to the squad. Your account is verified and ready to go.<br>
+            We're hyped to see you on board.
+        </p>
+
+        <a href="http://localhost:3000/dashboard" class="btn">🚀 Jump to Dashboard</a>
+
+        <div class="footer">
+            Need help? Just hit reply.<br>
+            &copy; 2025 badger.ai
+        </div>
+    </div>
+</body>
+</html>
