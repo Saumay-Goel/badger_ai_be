@@ -2,9 +2,13 @@ from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.middleware.trustedhost import TrustedHostMiddleware
+from starlette.middleware import Middleware
+from starlette.middleware.sessions import SessionMiddleware
 from contextlib import asynccontextmanager
-from .database import engine, Base
 import time
+
+from app.core.config import settings
+from .database import engine, Base
 from .routers import auth
 
 
@@ -15,31 +19,27 @@ async def lifespan(app: FastAPI):
     yield
 
 
-app = FastAPI(
-    title="Agentic App",
-    description="My agentic app",
-    version="1.0.0",
-    lifespan=lifespan
-)
+middleware = [
+    Middleware(SessionMiddleware, secret_key=settings.SECRET_KEY),
 
-app.add_middleware(
-    TrustedHostMiddleware,
-    allowed_hosts=["localhost", "127.0.0.1", "yourdomain.com", "*"]
-)
+    Middleware(TrustedHostMiddleware, allowed_hosts=["localhost", "127.0.0.1"]),
 
-origins = [
-    "http://localhost:3000",
+    Middleware(CORSMiddleware,
+               allow_origins=["http://localhost:3000"],
+               allow_credentials=True,
+               allow_methods=["*"],
+               allow_headers=["*"]),
+
+    Middleware(GZipMiddleware, minimum_size=1000)
 ]
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allow_headers=["*"],
+app = FastAPI(
+    title="Badger Ai Api",
+    description="Badger Ai Api",
+    version="1.0.0",
+    lifespan=lifespan,
+    middleware=middleware
 )
-
-app.add_middleware(GZipMiddleware, minimum_size=1000)
 
 
 @app.middleware("http")
