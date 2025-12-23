@@ -2,7 +2,7 @@ venv/
 __pycache__/
 *.pyc
 
-=.env
+.env
 certbot/
 
 .DS_Store
