@@ -1,6 +1,6 @@
 services:
   backend:
-    image: ghcr.io/<your-github-username>/<your-repo-name>:latest
+    image: ghcr.io/saumay-goel/badger_ai_be:latest
     restart: always
     expose:
       - "8000"
