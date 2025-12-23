@@ -33,7 +33,7 @@ jobs:
           context: .
           # This assumes your Dockerfile is in app/Dockerfile.
           # IF your Dockerfile is in root, remove the next line.
-          file: ./app/Dockerfile
+          file: ./Dockerfile
           push: true
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
 

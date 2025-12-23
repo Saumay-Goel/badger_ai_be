@@ -13,7 +13,7 @@ WORKDIR /app
 ENV PATH=/root/.local/bin:$PATH
 
 COPY --from=builder /root/.local /root/.local
-COPY . .
+COPY app/ .
 
 # Run uvicorn
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
