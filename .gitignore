@@ -9,3 +9,6 @@ certbot/
 
 .idea/
 .vscode/
+
+gh_actions_key
+gh_actions_key.pub
