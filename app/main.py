@@ -22,10 +22,9 @@ async def lifespan(app: FastAPI):
 middleware = [
     Middleware(SessionMiddleware, secret_key=settings.SECRET_KEY),
 
-    Middleware(TrustedHostMiddleware, allowed_hosts=["localhost", "127.0.0.1"]),
-
+    Middleware(TrustedHostMiddleware, allowed_hosts=["localhost", "127.0.0.1", "badgerapi.acadmate.in"]),
     Middleware(CORSMiddleware,
-               allow_origins=["http://localhost:3000"],
+               allow_origins=["http://localhost:3000", "https://badgerapi.acadmate.in"],
                allow_credentials=True,
                allow_methods=["*"],
                allow_headers=["*"]),
