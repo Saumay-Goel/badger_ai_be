@@ -1,5 +1,11 @@
 venv/
-.env
-.idea/
 __pycache__/
 *.pyc
+
+=.env
+certbot/
+
+.DS_Store
+
+.idea/
+.vscode/

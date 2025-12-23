@@ -1,0 +1,26 @@
+services:
+  backend:
+    image: ghcr.io/<your-github-username>/<your-repo-name>:latest
+    restart: always
+    expose:
+      - "8000"
+    env_file:
+      - .env
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx_conf:/etc/nginx/conf.d
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    depends_on:
+      - backend
+
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
