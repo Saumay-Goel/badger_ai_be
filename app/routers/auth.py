@@ -227,7 +227,7 @@ async def read_users_me(current_user: schemas.User = Depends(get_current_user_fr
 
 @router.get("/google/login")
 async def login_via_google(request: Request):
-    redirect_uri = "https://badger.acadmate.in/auth/google/callback"
+    redirect_uri = "https://badgerapi.acadmate.in/auth/google/callback"
     return await oauth.google.authorize_redirect(request, redirect_uri)
 
 
