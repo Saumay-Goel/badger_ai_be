@@ -227,7 +227,7 @@ async def read_users_me(current_user: schemas.User = Depends(get_current_user_fr
 
 @router.get("/google/login")
 async def login_via_google(request: Request):
-    redirect_uri = "http://localhost:8000/auth/google/callback"
+    redirect_uri = "https://badger.acadmate.in/auth/google/callback"
     return await oauth.google.authorize_redirect(request, redirect_uri)
 
 
@@ -243,7 +243,7 @@ async def auth_google_callback(
             raise Exception("No user info")
     except Exception as e:
         print(f"OAuth Error: {e}")
-        return RedirectResponse(url="http://localhost:3000/login?error=oauth_failed")
+        return RedirectResponse(url="https://badger.acadmate.in/login?error=oauth_failed")
 
     email = user_info.get('email')
 
@@ -262,7 +262,7 @@ async def auth_google_callback(
         expires_delta=access_token_expires
     )
 
-    response = RedirectResponse(url="http://localhost:3000/dashboard")
+    response = RedirectResponse(url="https://badger.acadmate.in/dashboard")
 
     set_auth_cookie(response, access_token)
 
